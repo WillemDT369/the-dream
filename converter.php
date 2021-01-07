@@ -9,18 +9,26 @@
 </head>
 
 <body>
+    <!-- TODO:check h3 value on first page load -->
     <?php
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        error_reporting(E_ALL);
+        
         if(isset($_POST['convert'])){
-            $amount = $_POST['amount'];
+            $amount = (float)$_POST['amount'];
             $dropdown = $_POST["dropdown"];
-            if($dropdown == "XPF"){
-                $output = $amount * 0.00838;
-            } else if($dropdown == "USD"){
-                $output = $amount * 0.812015;
-            } else if($dropdown == "GBP"){
-                $output = $amount * 1.10259;
+            switch($dropdown){
+                case "XPF":
+                    $output = $amount * 0.00838;
+                    break;
+                case "USD":
+                    $output = $amount * 0.812015;
+                    break;
+                case "GBP":
+                    $output = $amount * 1.10259;
+                    break;
             }
-            
         } 
     ?>
     <div class="container">
@@ -32,7 +40,7 @@
             <select id="currency" type="text" name="dropdown">
                 <option value="XPF">XPF</option>
                 <option value="USD">USD</option>
-                <option value="GBP">GDP</option>
+                <option value="GBP">GBP</option>
             <input type="submit" name="convert" value="How much did I pay?">
         </form>
         <h3>€ <?= $output; ?></h3>
