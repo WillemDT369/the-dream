@@ -9,12 +9,13 @@
 </head>
 
 <body>
-    <!-- TODO:check h3 value on first page load -->
     <?php
+    // only for exercise, not in real life, errors are only for developer to see
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
-        
+        // $output must be defined globally as well
+        $output = "";
         if(isset($_POST['convert'])){
             $amount = (float)$_POST['amount'];
             $dropdown = $_POST["dropdown"];
@@ -32,7 +33,7 @@
         } 
     ?>
     <div class="container">
-        <form class="converter-form" action="converter.php" method="POST">
+        <form class="converter-form" action="" method="POST">
             <h2>Convert to Euro</h2>
             <label for="price">Local Price:</label>
             <input id="price" type="text" name="amount" placeholder="Enter Price"><br>
